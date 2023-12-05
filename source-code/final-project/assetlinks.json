@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.droidcon.deeplinksnav",
+    "sha256_cert_fingerprints":
+    ["45:74:72:CE:F6:BA:CC:30:6A:BD:C8:EC:DB:16:4C:7E:0B:E1:A5:CE:CA:7D:2B:21:1E:8E:82:73:FD:7B:C8:84"]
+  }
+}]
