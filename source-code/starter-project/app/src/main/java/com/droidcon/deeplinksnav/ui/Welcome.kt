@@ -51,7 +51,7 @@ fun Welcome(modifier: Modifier = Modifier,
             }
 
             TextButton(onClick = {
-                onNavigate(Screen.Category.route)
+                                 TODO("TO BE IMPLEMENTED")
             }, modifier = Modifier
                 .align(Alignment.Center)) {
                 Text(text = stringResource(R.string.start_here), modifier = Modifier
