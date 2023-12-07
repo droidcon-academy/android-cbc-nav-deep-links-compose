@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script src="/static/js/jquery-3.7.1.min.js"></script>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="grid-container grid text-center">
+            
+    </div>
+        
+    <div class="course-details"></div>
+
+    <script src="/static/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/static/js/util.js">
+    </script>
+    <script>
+        $(document).ready(()=>{
+            if (window.location.href.endsWith('courses')){
+                loadCourses();
+            }
+            else {
+                //We assume courseName is provided as URL segment
+                let segments = window.location.href.split('/');
+                let courseName = segments[segments.length - 1];
+                loadCourseDetails(courseName);
+            }
+        });
+    </script>    
+</body>
+</html>

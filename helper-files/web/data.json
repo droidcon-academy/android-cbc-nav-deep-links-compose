@@ -1,0 +1,59 @@
+{
+    "categories":[
+        {
+            "name": "books",
+            "cover": "/static/images/books.png",
+            "items": [
+                {
+                    "name": "Jetpack Compose Developer Handbook",
+                    "author": "Mehdi Haghgoo",
+                    "cover": "/static/images/compose_book.png",
+                    "authorImage":"/static/images/mehdi.jpg",
+                    "description": "Coming Soon"
+                },
+                {
+                    "name": "The Little Book of Containers",
+                    "author": "Mehdi Haghgoo",
+                    "cover":"/static/images/containers_book.png",
+                    "authorImage":"/static/images/mehdi.jpg",
+                    "description":"Coming Soon"
+                }
+            ]
+        },
+        {
+            "name": "courses",
+            "cover": "/static/images/courses.png",
+            "items": [
+                {
+                    "name": "Compose Animations",
+                    "instructor": "Mehdi Haghgoo",
+                    "cover": "/static/images/compose_animations.png",
+                    "instructorImage":"/static/images/mehdi.jpg",
+                    "description":"Learn how to implement UI animations in Jetpack Compose"
+                },
+                {
+                    "name": "The Complete Android Animations Course with Kotlin",
+                    "instructor": "Mehdi Haghgoo",
+                    "cover":"/static/images/android_animations.png",
+                    "instructorImage":"/static/images/mehdi.jpg",
+                    "description": "This course will teach you how to create animations for Views in Android. You will also learn about activity transitions and more."
+                },
+                {
+                    "name": "Jetpack Compose Developer Course",
+                    "instructor":"Mehdi Haghgoo",
+                    "cover":"/static/images/compose_dev_course.png",
+                    "instructorImage":"/static/images/mehdi.jpg",
+                    "description":"The course covers the basics of UI development using Android's Jetpack Compose toolkit"
+                },
+                {
+                    "name": "The Complete Containers Course for Developers",
+                    "instructor":"Mehdi Haghgoo",
+                    "cover":"/static/images/containers_course.png",
+                    "instructorImage":"/static/images/mehdi.jpg",
+                    "description":"With this course, you will learn what Linux containers are and how you can create and manage them."
+                }
+            ]
+            
+        }
+    ]
+}

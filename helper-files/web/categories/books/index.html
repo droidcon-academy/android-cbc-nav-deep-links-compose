@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script src="/static/js/jquery-3.7.1.min.js"></script>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="grid text-center">
+    </div>
+    
+    <div class="book-details"></div>
+        
+    
+    <script src="/static/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/static/js/util.js">
+    </script>
+    <script>
+        $(document).ready(()=>{
+            if (window.location.href.endsWith('books')){
+                //We are asked for all books, so load them
+                loadBooks();
+            }
+            else {
+                //We assume we are asked for the name of a book, so try to load the book's details
+                let parts = window.location.href.split('/');
+                let bookName = parts[parts.length - 1];
+                loadBookDetails(bookName);
+            }
+        });
+
+
+    </script>    
+</body>
+</html>
