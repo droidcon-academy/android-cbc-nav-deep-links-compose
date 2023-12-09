@@ -137,6 +137,7 @@ async function getCoursesFromDb() {
 }
 /**
  * Loads course details from our JSON data for the given course name
+ * @param {string} courseName
  */
 async function loadCourseDetails(courseName){
     let courses = await getCoursesFromDb(courseName);
@@ -166,4 +167,37 @@ async function loadCourseDetails(courseName){
         `);
     };
     layoutCourse(course);    
+}
+
+/**
+ * Searches the given segment in course titles and updates the document
+ * title using a matching name
+ * @param {string} courseSegment 
+ */
+async function updateTitleFromCourseSegment(courseSegment){
+    let courses = await getCoursesFromDb();
+    let course = courses.find((course)=>{
+      return course.name.toRouteSegment() == courseSegment
+    }
+    );
+    //Update the document title if a match is found
+    if (course){
+      document.title = course.name;
+    }
+}
+
+/**
+ * Searches the given segment in book titles and updates the document
+ * title using a matching name
+ * @param {string} bookSegment 
+ */
+async function updateTitleFromBookSegment(bookSegment){
+    let books = await getBooksFromDb();
+    let book = books.find((book) => {
+        return book.name.toRouteSegment() == bookSegment
+    });
+    //Update the document title if a match was found
+    if(book){
+        document.title = book.name;
+    }
 }

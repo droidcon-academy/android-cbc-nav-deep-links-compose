@@ -21,14 +21,16 @@
     </script>
     <script>
         $(document).ready(()=>{
-            if (window.location.href.endsWith('courses')){
+            let href = window.location.href;
+            if (href.endsWith('courses') || href.endsWith('courses/')){
                 loadCourses();
             }
             else {
                 //We assume courseName is provided as URL segment
                 let segments = window.location.href.split('/');
-                let courseName = segments[segments.length - 1];
-                loadCourseDetails(courseName);
+                let courseSegment = segments[segments.length - 1];
+                updateTitleFromCourseSegment(courseSegment);
+                loadCourseDetails(courseSegment);
             }
         });
     </script>    
