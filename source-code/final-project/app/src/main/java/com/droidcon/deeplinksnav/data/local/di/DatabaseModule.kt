@@ -18,13 +18,17 @@ package com.droidcon.deeplinksnav.data.local.di
 
 import android.content.Context
 import androidx.room.Room
+import com.droidcon.deeplinksnav.data.local.DbInitializer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import com.droidcon.deeplinksnav.data.local.database.AppDatabase
+import com.droidcon.deeplinksnav.data.local.database.BookDao
+import com.droidcon.deeplinksnav.data.local.database.CategoryDao
 import com.droidcon.deeplinksnav.data.local.database.CourseDao
+import javax.inject.Provider
 import javax.inject.Singleton
 
 
@@ -37,12 +41,25 @@ class DatabaseModule {
     }
 
     @Provides
+    fun provideBookDao(appDatabase: AppDatabase): BookDao {
+        return appDatabase.bookDao()
+    }
+
+    @Provides
+    fun provideCategoryDao(appDatabase: AppDatabase): CategoryDao {
+        return appDatabase.categoryDao()
+    }
+
+    @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
-            "Publications"
-        ).build()
+            "links_app_db"
+        )
+            .addCallback(DbInitializer())
+            .build()
     }
+
 }

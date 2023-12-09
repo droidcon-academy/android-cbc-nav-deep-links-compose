@@ -19,9 +19,11 @@ package com.droidcon.deeplinksnav.data.local.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
-@Database(entities = [Course::class, Category::class], version = 1)
+@Database(entities = [Course::class, Category::class, Book::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun courseDao(): CourseDao
 
     abstract fun categoryDao(): CategoryDao
+
+    abstract fun bookDao(): BookDao
 }

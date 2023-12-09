@@ -1,7 +1,9 @@
 package com.droidcon.deeplinksnav.data
 
+import androidx.compose.ui.text.toLowerCase
 import com.droidcon.deeplinksnav.R
 import com.droidcon.deeplinksnav.data.local.database.Category
+import com.droidcon.deeplinksnav.data.local.database.CategoryDao
 import com.droidcon.deeplinksnav.ui.CATEGORY_BOOKS
 import com.droidcon.deeplinksnav.ui.CATEGORY_COURSES
 import kotlinx.coroutines.flow.Flow
@@ -53,6 +55,31 @@ class DummyCategoryRepository @Inject constructor(
             val nameToTest = name.filterNot { it.isWhitespace() }.lowercase()
             nameToTest == processedName
         }
+    }
+
+}
+
+
+class DefaultCategoryRepository @Inject constructor(
+    private val categoryDao: CategoryDao
+): CategoryRepository {
+    override val categories: Flow<List<Category>>
+        get() = categoryDao.getCategories()
+
+    override suspend fun add(category: Category) {
+        categoryDao.insertCategory(category)
+    }
+
+    override suspend fun getCategoryByName(name: String): Category? {
+        var category: Category? = null
+        categoryDao.getCategories().collect { list ->
+            category = list.find { category ->
+                val processedName = category.name.filterNot { it.isWhitespace() }.lowercase()
+                val nameToTest = name.filterNot { it.isWhitespace() }.lowercase()
+                nameToTest == processedName
+            }
+        }
+        return category
     }
 
 }
