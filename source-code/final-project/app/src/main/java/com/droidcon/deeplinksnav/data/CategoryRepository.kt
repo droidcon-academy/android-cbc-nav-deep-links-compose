@@ -1,6 +1,5 @@
 package com.droidcon.deeplinksnav.data
 
-import androidx.compose.ui.text.toLowerCase
 import com.droidcon.deeplinksnav.R
 import com.droidcon.deeplinksnav.data.local.database.Category
 import com.droidcon.deeplinksnav.data.local.database.CategoryDao
@@ -67,7 +66,7 @@ class DefaultCategoryRepository @Inject constructor(
         get() = categoryDao.getCategories()
 
     override suspend fun add(category: Category) {
-        categoryDao.insertCategory(category)
+        categoryDao.insertOrUpdateCategory(category)
     }
 
     override suspend fun getCategoryByName(name: String): Category? {

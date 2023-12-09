@@ -2,7 +2,9 @@ package com.droidcon.deeplinksnav.data
 
 import com.droidcon.deeplinksnav.R
 import com.droidcon.deeplinksnav.data.local.database.Book
+import com.droidcon.deeplinksnav.data.local.database.BookDao
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -57,6 +59,28 @@ class DummyBookRepository @Inject constructor(
             val nameToTest = name.filterNot { it.isWhitespace() }.lowercase()
             nameToTest == processedName
         }
+    }
+
+}
+
+class DefaultBookRepository @Inject constructor(private val bookDao: BookDao): BookRepository{
+    override val books: Flow<List<Book>>
+        get() = bookDao.getBooks()
+
+    override suspend fun add(book: Book) {
+        bookDao.insertBook(book)
+    }
+
+    override suspend fun getBookByName(name: String): Book? {
+        var foundBook: Book? = null
+        books.collect {list->
+            foundBook = list.find { book ->
+                val processedName = book.name.filterNot { it.isWhitespace() }.lowercase()
+                val nameToTest = name.filterNot { it.isWhitespace() }.lowercase()
+                nameToTest == processedName
+            }
+        };
+        return foundBook
     }
 
 }

@@ -26,7 +26,9 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import com.droidcon.deeplinksnav.data.CourseRepository
+import com.droidcon.deeplinksnav.data.DefaultBookRepository
 import com.droidcon.deeplinksnav.data.DefaultCategoryRepository
+import com.droidcon.deeplinksnav.data.DefaultCourseRepository
 import com.droidcon.deeplinksnav.data.DummyCategoryRepository
 import com.droidcon.deeplinksnav.data.DummyBookRepository
 import com.droidcon.deeplinksnav.data.DummyCourseRepository
@@ -41,7 +43,7 @@ interface DataModule {
     @Singleton
     @Binds
     fun bindsCourseRepository(
-        courseRepository: DummyCourseRepository
+        courseRepository: DefaultCourseRepository
     ): CourseRepository
 
     @Singleton
@@ -53,7 +55,7 @@ interface DataModule {
     @Singleton
     @Binds
     fun bindsBookRepository(
-        bookRepository: DummyBookRepository
+        bookRepository: DefaultBookRepository
     ): BookRepository
 
 }

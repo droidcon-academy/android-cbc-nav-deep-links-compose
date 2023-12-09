@@ -20,6 +20,11 @@ import com.droidcon.deeplinksnav.R
 import kotlinx.coroutines.flow.Flow
 import com.droidcon.deeplinksnav.data.local.database.Course
 import com.droidcon.deeplinksnav.data.local.database.CourseDao
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
@@ -43,7 +48,8 @@ class DefaultCourseRepository @Inject constructor(
     }
 
     override suspend fun getCourseByName(name: String): Course? {
-        TODO("Not yet implemented")
+        return courses.first().find { course-> course.name.find { it.isWhitespace() }?.lowercase() == name.filterNot { it.isWhitespace() }.lowercase() }
+
     }
 }
 

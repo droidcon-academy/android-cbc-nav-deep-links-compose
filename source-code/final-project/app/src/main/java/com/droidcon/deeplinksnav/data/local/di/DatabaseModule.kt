@@ -28,6 +28,7 @@ import com.droidcon.deeplinksnav.data.local.database.AppDatabase
 import com.droidcon.deeplinksnav.data.local.database.BookDao
 import com.droidcon.deeplinksnav.data.local.database.CategoryDao
 import com.droidcon.deeplinksnav.data.local.database.CourseDao
+import com.droidcon.deeplinksnav.data.local.database.DaoHolder
 import javax.inject.Provider
 import javax.inject.Singleton
 
@@ -45,21 +46,34 @@ class DatabaseModule {
         return appDatabase.bookDao()
     }
 
-    @Provides
-    fun provideCategoryDao(appDatabase: AppDatabase): CategoryDao {
-        return appDatabase.categoryDao()
-    }
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
+    fun provideAppDatabase(
+            @ApplicationContext appContext: Context,
+            daosProvider: Provider<DaoHolder>
+                           ): AppDatabase {
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
             "links_app_db"
         )
-            .addCallback(DbInitializer())
+            .addCallback(DbInitializer(daosProvider))
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCategoryDao(db: AppDatabase): CategoryDao = db.categoryDao()
+
+    @Provides
+    @Singleton
+    fun provideDaos(db: AppDatabase): DaoHolder {
+        return DaoHolder(
+            categoryDao = db.categoryDao(),
+            bookDao = db.bookDao(),
+            courseDao = db.courseDao()
+        )
     }
 
 }

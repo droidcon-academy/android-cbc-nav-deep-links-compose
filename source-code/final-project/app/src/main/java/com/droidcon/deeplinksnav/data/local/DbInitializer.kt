@@ -3,35 +3,36 @@ package com.droidcon.deeplinksnav.data.local
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.droidcon.deeplinksnav.R
-import com.droidcon.deeplinksnav.data.local.database.AppDatabase
 import com.droidcon.deeplinksnav.data.local.database.Book
 import com.droidcon.deeplinksnav.data.local.database.BookDao
 import com.droidcon.deeplinksnav.data.local.database.Category
 import com.droidcon.deeplinksnav.data.local.database.CategoryDao
 import com.droidcon.deeplinksnav.data.local.database.Course
 import com.droidcon.deeplinksnav.data.local.database.CourseDao
+import com.droidcon.deeplinksnav.data.local.database.DaoHolder
 import com.droidcon.deeplinksnav.ui.CATEGORY_BOOKS
 import com.droidcon.deeplinksnav.ui.CATEGORY_COURSES
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Provider
 
-class DbInitializer : RoomDatabase.Callback() {
+class DbInitializer(
+    private val daoHolder: Provider<DaoHolder>,
+    ) : RoomDatabase.Callback() {
+
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
-        val database = db as AppDatabase
         CoroutineScope(Dispatchers.IO).launch {
-            insertDefaultCategories(database.categoryDao())
-            insertDefaultCourses(database.courseDao())
-            insertDefaultBooks(database.bookDao())
+            insertDefaultCategories(daoHolder.get().categoryDao)
+            insertDefaultCourses(daoHolder.get().courseDao)
+            insertDefaultBooks(daoHolder.get().bookDao)
         }
 
     }
 
     private suspend fun insertDefaultCategories(categoryDao: CategoryDao){
-        DefaultCategories.forEach {
-            categoryDao.insertCategory(it)
-        }
+        categoryDao.insertOrUpdateCategory(*DefaultCategories.toTypedArray())
     }
 
     private suspend fun insertDefaultCourses(courseDao: CourseDao){
