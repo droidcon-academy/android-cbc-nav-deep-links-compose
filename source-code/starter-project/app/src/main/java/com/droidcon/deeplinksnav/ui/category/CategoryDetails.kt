@@ -35,6 +35,9 @@ import com.droidcon.deeplinksnav.R
 import com.droidcon.deeplinksnav.data.CategoryLocalDataSource
 import com.droidcon.deeplinksnav.data.local.database.Category
 
+/**
+ * Details screen for an individual [Category] item
+ */
 @Composable
 fun CategoryDetails(
     category: Category,

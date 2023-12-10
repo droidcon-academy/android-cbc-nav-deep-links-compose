@@ -1,15 +1,8 @@
-package com.droidcon.deeplinksnav.data.local
+package com.droidcon.deeplinksnav.data.local.database
 
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.droidcon.deeplinksnav.R
-import com.droidcon.deeplinksnav.data.local.database.Book
-import com.droidcon.deeplinksnav.data.local.database.BookDao
-import com.droidcon.deeplinksnav.data.local.database.Category
-import com.droidcon.deeplinksnav.data.local.database.CategoryDao
-import com.droidcon.deeplinksnav.data.local.database.Course
-import com.droidcon.deeplinksnav.data.local.database.CourseDao
-import com.droidcon.deeplinksnav.data.local.database.DaoHolder
 import com.droidcon.deeplinksnav.ui.CATEGORY_BOOKS
 import com.droidcon.deeplinksnav.ui.CATEGORY_COURSES
 import kotlinx.coroutines.CoroutineScope

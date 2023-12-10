@@ -1,13 +1,8 @@
 package com.droidcon.deeplinksnav.data
 
-import android.util.Log
-import com.droidcon.deeplinksnav.R
-import com.droidcon.deeplinksnav.data.local.DefaultCategories
+import com.droidcon.deeplinksnav.data.local.database.DefaultCategories
 import com.droidcon.deeplinksnav.data.local.database.Category
 import com.droidcon.deeplinksnav.data.local.database.CategoryDao
-import com.droidcon.deeplinksnav.data.local.database.Course
-import com.droidcon.deeplinksnav.ui.CATEGORY_BOOKS
-import com.droidcon.deeplinksnav.ui.CATEGORY_COURSES
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf

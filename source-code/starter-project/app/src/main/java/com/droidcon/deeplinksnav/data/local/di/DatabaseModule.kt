@@ -18,16 +18,24 @@ package com.droidcon.deeplinksnav.data.local.di
 
 import android.content.Context
 import androidx.room.Room
+import com.droidcon.deeplinksnav.data.local.database.AppDatabase
+import com.droidcon.deeplinksnav.data.local.database.BookDao
+import com.droidcon.deeplinksnav.data.local.database.CategoryDao
+import com.droidcon.deeplinksnav.data.local.database.CourseDao
+import com.droidcon.deeplinksnav.data.local.database.DaoHolder
+import com.droidcon.deeplinksnav.data.local.database.DbInitializer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import com.droidcon.deeplinksnav.data.local.database.AppDatabase
-import com.droidcon.deeplinksnav.data.local.database.CourseDao
+import javax.inject.Provider
 import javax.inject.Singleton
 
 
+/**
+ * Hilt module providing app's [androidx.room.RoomDatabase] and its [androidx.room.Dao]s
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
@@ -37,12 +45,42 @@ class DatabaseModule {
     }
 
     @Provides
+    fun provideBookDao(appDatabase: AppDatabase): BookDao {
+        return appDatabase.bookDao()
+    }
+
+
+    /**
+     * @param appContext Application context used to create the Room database
+     * @param daosProvider Custom provider that allows providing [androidx.room.Dao]s used by database initializer
+     */
+    @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
+    fun provideAppDatabase(
+        @ApplicationContext appContext: Context,
+        daosProvider: Provider<DaoHolder>
+    ): AppDatabase {
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
-            "Publications"
-        ).build()
+            "links_app_db"
+        )
+            .addCallback(DbInitializer(daosProvider))
+            .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideCategoryDao(db: AppDatabase): CategoryDao = db.categoryDao()
+
+    @Provides
+    @Singleton
+    fun provideDaos(db: AppDatabase): DaoHolder {
+        return DaoHolder(
+            categoryDao = db.categoryDao(),
+            bookDao = db.bookDao(),
+            courseDao = db.courseDao()
+        )
+    }
+
 }

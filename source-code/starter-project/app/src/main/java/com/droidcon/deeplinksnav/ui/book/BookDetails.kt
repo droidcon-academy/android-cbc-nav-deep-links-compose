@@ -6,19 +6,18 @@ package com.droidcon.deeplinksnav.ui.book
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Card
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -37,9 +36,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.droidcon.deeplinksnav.R
-import com.droidcon.deeplinksnav.data.DefaultBooks
+import com.droidcon.deeplinksnav.data.local.database.DefaultBooks
 import com.droidcon.deeplinksnav.data.local.database.Book
 
+/**
+ * UI for displaying details of a [Book]
+ */
 @Composable
 fun BookDetails(
     modifier: Modifier = Modifier,
@@ -82,7 +84,7 @@ fun BookDetails(
             item {
                 Text(
                     text = book.name,
-                    modifier = Modifier.padding(8.dp),
+                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
                     style = MaterialTheme.typography.headlineLarge
                 )
             }
@@ -98,33 +100,65 @@ fun BookDetails(
 
             //Instructor
             item {
-                Row(Modifier.fillMaxWidth().height(200.dp)) {
-                    Text(
-                        text = book.author, modifier = Modifier
-                            .padding(8.dp)
-                            .align(Alignment.CenterVertically)
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)) {
+
+                    Column(
+                        Modifier
                             .weight(1f)
-                        ,
-                        style = MaterialTheme.typography.titleLarge
+                            .align(Alignment.CenterVertically)
+
                     )
+                    {
+                        Box(Modifier
+                            .weight(1f)
+                        ){
+                            Text(
+                                text = stringResource(id = R.string.author), modifier = Modifier
+                                    .padding(8.dp)
+                                    .align(Alignment.BottomCenter)
+                                ,
+                                style = MaterialTheme.typography.labelSmall
+                            )
+                        }
+
+                        Text(
+                            text = book.author, modifier = Modifier
+                                .padding(8.dp)
+                                .weight(1f),
+                            style = MaterialTheme.typography.titleLarge
+                        )
+                    }
 
                     //Instructor photo
-                    if (book.authorPicRes != null) {
-                        Image(
-                            painter = painterResource(book.authorPicRes),
-                            contentDescription = book.author,
-                            modifier = Modifier
-                                .padding(8.dp)
-                                .weight(1f)
-                                .clip(CircleShape)
-                        )
-                    } else if (book.authorPicUrl != null) {
-                        AsyncImage(
-                            model = book.authorPicUrl, contentDescription = book.author,
-                            modifier = Modifier
-                                .clip(CircleShape)
-                                .padding(8.dp)
-                        )
+                    Box(Modifier
+                        .weight(1f)
+                    ){
+                        if (book.authorPicRes != null) {
+                            Image(
+                                painter = painterResource(book.authorPicRes),
+                                contentDescription = book.author,
+                                modifier = Modifier
+                                    .padding(8.dp)
+                                    .clip(CircleShape)
+                            )
+                        } else if (book.authorPicUrl != null) {
+                            AsyncImage(
+                                model = book.authorPicUrl, contentDescription = book.author,
+                                modifier = Modifier
+                                    .clip(CircleShape)
+                                    .padding(8.dp)
+                            )
+                        } else {
+                            Icon(
+                                imageVector = Icons.Default.Person,
+                                contentDescription = stringResource(
+                                    id = R.string.person
+                                )
+                            )
+                        }
                     }
 
                 }

@@ -15,6 +15,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * [ViewModel] class for the [BookGrid] screen
+ */
 @HiltViewModel
 class BookViewModel @Inject constructor(
     private val bookRepository: BookRepository

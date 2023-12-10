@@ -18,7 +18,7 @@ package com.droidcon.deeplinksnav.data.local.di
 
 import android.content.Context
 import androidx.room.Room
-import com.droidcon.deeplinksnav.data.local.DbInitializer
+import com.droidcon.deeplinksnav.data.local.database.DbInitializer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -36,7 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.droidcon.deeplinksnav.R
-import com.droidcon.deeplinksnav.data.local.DefaultBooks
+import com.droidcon.deeplinksnav.data.local.database.DefaultBooks
 import com.droidcon.deeplinksnav.data.local.database.Book
 
 /**
@@ -84,7 +84,7 @@ fun BookDetails(
             item {
                 Text(
                     text = book.name,
-                    modifier = Modifier.padding(8.dp),
+                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
                     style = MaterialTheme.typography.headlineLarge
                 )
             }

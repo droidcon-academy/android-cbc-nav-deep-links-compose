@@ -1,10 +1,8 @@
 package com.droidcon.deeplinksnav.data
 
-import com.droidcon.deeplinksnav.R
-import com.droidcon.deeplinksnav.data.local.DefaultBooks
+import com.droidcon.deeplinksnav.data.local.database.DefaultBooks
 import com.droidcon.deeplinksnav.data.local.database.Book
 import com.droidcon.deeplinksnav.data.local.database.BookDao
-import com.droidcon.deeplinksnav.data.local.database.Course
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf

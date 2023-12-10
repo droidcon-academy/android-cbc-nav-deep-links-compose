@@ -51,10 +51,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.droidcon.deeplinksnav.R
-import com.droidcon.deeplinksnav.data.DefaultCourses
+import com.droidcon.deeplinksnav.data.local.database.DefaultCourses
 import com.droidcon.deeplinksnav.data.local.database.Course
 import com.droidcon.deeplinksnav.ui.theme.MyApplicationTheme
 
+/**
+ * Grid UI for the list of [Course]s
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun CourseGrid(
@@ -130,6 +133,7 @@ internal fun CourseGrid(
                                     .weight(1f),
                                 style = MaterialTheme.typography.labelMedium
                             )
+                            //If image resource is available, load it with painter
                             if (item.instructorImgRes != null) {
                                 Image(
                                     painter = painterResource(item.instructorImgRes),
@@ -140,6 +144,7 @@ internal fun CourseGrid(
                                     contentScale = ContentScale.Inside
                                 )
                             } else if (item.instructorImgUrl != null) {
+                                //if image url is available, load it asynchronously
                                 AsyncImage(
                                     model = item.instructorImgUrl,
                                     contentDescription = item.instructor,
@@ -149,6 +154,7 @@ internal fun CourseGrid(
                                 )
 
                             } else {
+                                //If neither image resource nor image url is available, load the default placeholder image
                                 Image(
                                     painter = painterResource(id = R.drawable.instructor_placeholder),
                                     contentDescription = item.instructor,

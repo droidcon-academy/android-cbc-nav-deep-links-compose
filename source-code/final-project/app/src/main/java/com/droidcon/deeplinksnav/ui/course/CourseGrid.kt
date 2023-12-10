@@ -51,7 +51,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.droidcon.deeplinksnav.R
-import com.droidcon.deeplinksnav.data.local.DefaultCourses
+import com.droidcon.deeplinksnav.data.local.database.DefaultCourses
 import com.droidcon.deeplinksnav.data.local.database.Course
 import com.droidcon.deeplinksnav.ui.theme.MyApplicationTheme
 

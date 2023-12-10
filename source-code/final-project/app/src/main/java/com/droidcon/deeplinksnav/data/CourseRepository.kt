@@ -17,8 +17,7 @@
 package com.droidcon.deeplinksnav.data
 
 import android.util.Log
-import com.droidcon.deeplinksnav.R
-import com.droidcon.deeplinksnav.data.local.DefaultCourses
+import com.droidcon.deeplinksnav.data.local.database.DefaultCourses
 import kotlinx.coroutines.flow.Flow
 import com.droidcon.deeplinksnav.data.local.database.Course
 import com.droidcon.deeplinksnav.data.local.database.CourseDao

@@ -5,9 +5,13 @@ import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
+import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
+/**
+ * A single category entity
+ */
 @Entity
 data class Category(
     val name: String,
@@ -24,6 +28,6 @@ interface CategoryDao {
     @Query("SELECT * FROM category ORDER BY uid DESC LIMIT 10")
     fun getCategories(): Flow<List<Category>>
 
-    @Insert
-    suspend fun insertCategory(item: Category)
+    @Upsert
+    suspend fun insertOrUpdateCategory(vararg item: Category)
 }

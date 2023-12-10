@@ -1,14 +1,17 @@
 package com.droidcon.deeplinksnav.data
 
-import com.droidcon.deeplinksnav.R
+import com.droidcon.deeplinksnav.data.local.database.DefaultCategories
 import com.droidcon.deeplinksnav.data.local.database.Category
-import com.droidcon.deeplinksnav.ui.CATEGORY_BOOKS
-import com.droidcon.deeplinksnav.ui.CATEGORY_COURSES
+import com.droidcon.deeplinksnav.data.local.database.CategoryDao
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * [Category] repository interface
+ */
 interface CategoryRepository {
     val categories: Flow<List<Category>>
 
@@ -22,21 +25,10 @@ class CategoryLocalDataSource @Inject constructor(){
     val categories: List<Category> = DefaultCategories
 }
 
-val DefaultCategories = listOf(
-    Category(
-        name = CATEGORY_COURSES,
-        coverRes = R.drawable.online_courses,
-        coverUrl = null,
-        description = "Catalog of online courses"
-    ),
-    Category(
-        name = CATEGORY_BOOKS,
-        coverRes = R.drawable.books,
-        coverUrl = null,
-        description = "Catalog of written books"
-    )
-)
 
+/**
+ * Dummy implementation of category repository useful for testing
+ */
 class DummyCategoryRepository @Inject constructor(
     private val categoryDataSource: CategoryLocalDataSource
 ): CategoryRepository{
@@ -52,6 +44,28 @@ class DummyCategoryRepository @Inject constructor(
             val processedName = cat.name.filterNot{ it.isWhitespace() }.lowercase()
             val nameToTest = name.filterNot { it.isWhitespace() }.lowercase()
             nameToTest == processedName
+        }
+    }
+
+}
+
+
+/**
+ * default implementation of [CategoryRepository] backed by [androidx.room.RoomDatabase] for use in production
+ */
+class DefaultCategoryRepository @Inject constructor(
+    private val categoryDao: CategoryDao
+): CategoryRepository {
+    override val categories: Flow<List<Category>>
+        get() = categoryDao.getCategories()
+
+    override suspend fun add(category: Category) {
+        categoryDao.insertOrUpdateCategory(category)
+    }
+
+    override suspend fun getCategoryByName(name: String): Category? {
+        return categories.first().find {category ->
+            category.name.filterNot { it.isWhitespace() }.lowercase() == name.filterNot { it.isWhitespace() }.lowercase()
         }
     }
 

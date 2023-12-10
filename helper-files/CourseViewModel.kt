@@ -16,6 +16,7 @@
 
 package com.droidcon.deeplinksnav.ui.course
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidcon.deeplinksnav.data.CourseRepository
@@ -54,6 +55,7 @@ class CourseViewModel @Inject constructor(
     fun updateSelectedCourseByName(name: String){
         viewModelScope.launch {
             val find = courseRepository.getCourseByName(name)
+            Log.d("CourseViewModel", "updateSelectedCourseByName: Found course: ${find?.name}")
             find?.let{
                 _selectedCourse.value = it
             }

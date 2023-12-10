@@ -24,6 +24,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidcon.deeplinksnav.R
 
+/**
+ * Default landing screen that is shown to the user when the app is launched
+ */
 @Composable
 fun Welcome(modifier: Modifier = Modifier,
             onNavigate: (String) -> Unit) {
@@ -49,6 +52,7 @@ fun Welcome(modifier: Modifier = Modifier,
                     text = stringResource(R.string.my_demo), modifier = Modifier
                         .padding(8.dp)
                         .align(Alignment.CenterHorizontally),
+
                     style = MaterialTheme.typography.labelLarge,
                     textAlign = TextAlign.Center
                 )
@@ -56,8 +60,9 @@ fun Welcome(modifier: Modifier = Modifier,
 
             val context = LocalContext.current
             TextButton(onClick = {
-                                 Toast.makeText(context,
-                                     context.getString(R.string.please_check_out_the_final_version_for_full_functionality), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,
+                    context.getString(R.string.please_check_out_the_final_version_for_full_functionality), Toast.LENGTH_SHORT).show()
+
             }, modifier = Modifier
                 .align(Alignment.Center)) {
                 Text(text = stringResource(R.string.start_here), modifier = Modifier
