@@ -21,9 +21,13 @@ import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
+import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
+/**
+ * A single course entity
+ */
 @Entity
 data class Course(
     val name: String,
@@ -43,6 +47,6 @@ interface CourseDao {
     @Query("SELECT * FROM course ORDER BY uid DESC LIMIT 10")
     fun getCourses(): Flow<List<Course>>
 
-    @Insert
-    suspend fun insertCourse(item: Course)
+    @Upsert
+    suspend fun insertOrUpdateCourse(vararg item: Course)
 }

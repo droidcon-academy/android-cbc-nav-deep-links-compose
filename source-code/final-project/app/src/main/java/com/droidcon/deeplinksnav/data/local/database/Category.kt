@@ -9,6 +9,9 @@ import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
+/**
+ * A single category entity
+ */
 @Entity
 data class Category(
     val name: String,

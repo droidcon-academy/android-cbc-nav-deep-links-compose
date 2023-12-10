@@ -6,6 +6,9 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
+/**
+ * Screen class used to define destinations in the navigation graph
+ */
 sealed class Screen(val route: String) {
     data object Landing: Screen(route = "landing")
     data object Course: Screen(route = "courses")
@@ -84,6 +87,7 @@ class LinksAppState(
      * Navigate to a screen specified by [route]
      */
     fun navigate(route: String) {
+        Log.d(TAG, "navigate: $route")
         navController.navigate(route)
     }
 

@@ -22,6 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidcon.deeplinksnav.R
 
+/**
+ * Default landing screen that is shown to the user when the app is launched
+ */
 @Composable
 fun Welcome(modifier: Modifier = Modifier,
             onNavigate: (String) -> Unit) {

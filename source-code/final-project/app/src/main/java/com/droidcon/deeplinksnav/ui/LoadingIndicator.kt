@@ -12,6 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
+/**
+ * Animated loading indicator to be shown when the user needs to wait
+ */
 @Composable
 fun LoadingIndicator(modifier: Modifier = Modifier) {
     Box(modifier = modifier) {

@@ -24,6 +24,9 @@ import coil.compose.AsyncImage
 import com.droidcon.deeplinksnav.data.local.database.Book
 import com.droidcon.deeplinksnav.ui.theme.MyApplicationTheme
 
+/**
+ * UI for displaying a grid of [Book]s
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookGrid(

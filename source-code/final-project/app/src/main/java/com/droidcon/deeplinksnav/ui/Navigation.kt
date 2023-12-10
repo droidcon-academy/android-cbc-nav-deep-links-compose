@@ -19,7 +19,9 @@ package com.droidcon.deeplinksnav.ui
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -39,7 +41,15 @@ import com.droidcon.deeplinksnav.ui.course.CourseDetails
 import com.droidcon.deeplinksnav.ui.course.CourseGrid
 import com.droidcon.deeplinksnav.ui.course.CourseUiState
 import com.droidcon.deeplinksnav.ui.course.CourseViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
+/**
+ * UI that contains the app's navigation
+ */
 @Composable
 fun MyLinksApp(
     categoryViewModel: CategoryViewModel = hiltViewModel(),
@@ -85,7 +95,9 @@ fun MyLinksApp(
             ){entry->
             val categoryName = entry.arguments?.getString("categoryName")
             val itemName = entry.arguments?.getString("itemName")
-            categoryName?.let { categoryViewModel.updateSelectedCategoryByName(categoryName) }
+            categoryName?.let {
+                categoryViewModel.updateSelectedCategoryByName(categoryName)
+            }
             selectedCategory?.name?.let{catName->
             itemName?.let {
                 when (catName) {
@@ -117,7 +129,6 @@ fun MyLinksApp(
                 navDeepLink { uriPattern = "$BASE_URL/categories" }
             )
             ) {
-            Log.d("Navigation", "MyLinksApp: Inside Category route")
             if (categories is CategoryUiState.Success) {
                 CategoryGrid(
                     items = (categories as CategoryUiState.Success).data,

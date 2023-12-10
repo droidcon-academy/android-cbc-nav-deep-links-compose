@@ -33,6 +33,9 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 
+/**
+ * Hilt module providing app's [androidx.room.RoomDatabase] and its [androidx.room.Dao]s
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
@@ -47,6 +50,10 @@ class DatabaseModule {
     }
 
 
+    /**
+     * @param appContext Application context used to create the Room database
+     * @param daosProvider Custom provider that allows providing [androidx.room.Dao]s used by database initializer
+     */
     @Provides
     @Singleton
     fun provideAppDatabase(

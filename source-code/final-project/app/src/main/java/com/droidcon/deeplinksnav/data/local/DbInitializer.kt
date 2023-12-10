@@ -17,12 +17,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Provider
 
+/**
+ * This class is responsible for initializing the database with static data on first run of the app
+ * See [link](https://hadiyarajesh.hashnode.dev/pre-populating-room-database-with-static-data-in-android-using-hilt-di) for more on pre-populating a Room database with static data
+ */
 class DbInitializer(
     private val daoHolder: Provider<DaoHolder>,
     ) : RoomDatabase.Callback() {
 
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
+        //Insert initial data into the database
         CoroutineScope(Dispatchers.IO).launch {
             insertDefaultCategories(daoHolder.get().categoryDao)
             insertDefaultCourses(daoHolder.get().courseDao)
@@ -36,15 +41,18 @@ class DbInitializer(
     }
 
     private suspend fun insertDefaultCourses(courseDao: CourseDao){
-        DefaultCourses.forEach { courseDao.insertCourse(it) }
+        courseDao.insertOrUpdateCourse(*DefaultCourses.toTypedArray())
     }
 
     private suspend fun insertDefaultBooks(bookDao: BookDao){
-        DefaultBooks.forEach { bookDao.insertBook(it) }
+        bookDao.insertOrUpdateBook(*DefaultBooks.toTypedArray())
     }
 }
 
 
+/**
+ * Default books as initial list of books to insert into database
+ */
 val DefaultBooks = listOf(
     Book(
         name = "Jetpack Compose Developer Handbook",
@@ -66,6 +74,9 @@ val DefaultBooks = listOf(
     )
 )
 
+/**
+ * Default categories as initial list of categories to insert into database
+ */
 val DefaultCategories = listOf(
     Category(
         name = CATEGORY_COURSES,
@@ -81,6 +92,9 @@ val DefaultCategories = listOf(
     )
 )
 
+/**
+ * Default courses as initial list of courses to insert into database
+ */
 val DefaultCourses = listOf(
     Course("Compose Animations", "Mehdi Haghgoo", R.drawable.compose_animations, null, "Learn how to implement UI animations in Jetpack Compose", instructorImgRes = R.drawable.mehdi),
     Course("The Complete Android Animations Course with Kotlin", "Mehdi Haghgoo", R.drawable.android_animations, null, "This course will teach you how to create animations for Views in Android. You will also learn about activity transitions and more.", instructorImgRes = R.drawable.mehdi),

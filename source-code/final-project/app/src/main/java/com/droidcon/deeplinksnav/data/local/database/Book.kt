@@ -1,14 +1,17 @@
 package com.droidcon.deeplinksnav.data.local.database
 
-import androidx.annotation.StringRes
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
+import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
+/**
+ * A single book entity
+ */
 @Entity
 data class Book(
     val name: String,
@@ -28,6 +31,6 @@ interface BookDao {
     @Query("SELECT * FROM book ORDER BY uid DESC LIMIT 10")
     fun getBooks(): Flow<List<Book>>
 
-    @Insert
-    suspend fun insertBook(item: Book)
+    @Upsert
+    suspend fun insertOrUpdateBook(vararg item: Book)
 }
