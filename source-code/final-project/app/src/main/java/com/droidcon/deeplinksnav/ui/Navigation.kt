@@ -16,6 +16,7 @@
 
 package com.droidcon.deeplinksnav.ui
 
+import android.content.Intent
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -79,19 +80,23 @@ fun MyLinksApp(
 
     NavHost(navController = appState.navController, startDestination = Screen.Landing.route) {
         composable(route = Screen.Landing.route){
+            //We don't need to add a deep link here for the landing screen because if none of other paths match,
+            // the user will land on the default screen
             Welcome(onNavigate = {
                 appState.navigate(it)
             })
         }
         //Details destination both from within the app and from the deep links
         composable(route = Screen.ItemDetails.route,
+            deepLinks = listOf(
+                navDeepLink { uriPattern = "$BASE_URL/categories/{categoryName}/{itemName}";  },
+                navDeepLink { uriPattern = "$BASE_URL_MYAPP/categories/{categoryName}/{itemName}"; action = Intent.ACTION_VIEW }
+            ),
             arguments = listOf(
                 navArgument("categoryName"){type = NavType.StringType},
                 navArgument("itemName"){type = NavType.StringType}
             ),
-            deepLinks = listOf(
-                navDeepLink { uriPattern = "$BASE_URL/categories/{categoryName}/details/{itemName}";  }
-            )
+
             ){entry->
             val categoryName = entry.arguments?.getString("categoryName")
             val itemName = entry.arguments?.getString("itemName")
@@ -126,7 +131,8 @@ fun MyLinksApp(
 
         composable(route = Screen.Category.route,
             deepLinks = listOf(
-                navDeepLink { uriPattern = "$BASE_URL/categories" }
+                navDeepLink { uriPattern = "$BASE_URL/categories" },
+                navDeepLink { uriPattern = "$BASE_URL_MYAPP/categories" }
             )
             ) {
             if (categories is CategoryUiState.Success) {
@@ -156,9 +162,8 @@ fun MyLinksApp(
                 navArgument("categoryName") { type = NavType.StringType }
             ),
             deepLinks = listOf(
-                navDeepLink {
-                    uriPattern = "$BASE_URL/categories/{categoryName}"
-                }
+                navDeepLink { uriPattern = "$BASE_URL/categories/{categoryName}" }, //The app link
+                navDeepLink { uriPattern = "$BASE_URL_MYAPP/categories/{categoryName}" } //The deep link
             )) { backStackEntry ->
             backStackEntry.arguments?.getString("categoryName")?.let {
 //                categoryViewModel.updateSelectedCategory()

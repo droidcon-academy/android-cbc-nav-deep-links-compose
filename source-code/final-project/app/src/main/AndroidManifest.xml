@@ -47,8 +47,15 @@
                 <data android:scheme="https" />
                 <data android:host="freecoder.eu.org"  />
                 <data android:pathPrefix="/categories" />
+            </intent-filter>
 
-
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="pubs" />
+                <data android:host="linksapp" />
+                <data android:pathPrefix="/categories" />
             </intent-filter>
         </activity>
 

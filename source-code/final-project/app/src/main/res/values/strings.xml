@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">DeepLinksNavigationLab Final</string>
+    <string name="app_name">My Pubs</string>
     <string name="main_screen">Main Screen</string>
     <string name="courses">Courses</string>
     <string name="course_details">Course Details</string>
