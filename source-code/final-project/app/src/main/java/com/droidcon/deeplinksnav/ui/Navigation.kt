@@ -88,13 +88,13 @@ fun MyLinksApp(
         }
         //Details destination both from within the app and from the deep links
         composable(route = Screen.ItemDetails.route,
-            deepLinks = listOf(
-                navDeepLink { uriPattern = "$BASE_URL/categories/{categoryName}/{itemName}";  },
-                navDeepLink { uriPattern = "$BASE_URL_MYAPP/categories/{categoryName}/{itemName}"; action = Intent.ACTION_VIEW }
-            ),
             arguments = listOf(
                 navArgument("categoryName"){type = NavType.StringType},
                 navArgument("itemName"){type = NavType.StringType}
+            ),
+            deepLinks = listOf(
+                navDeepLink { uriPattern = "$BASE_URL/categories/{categoryName}/{itemName}"},
+                navDeepLink { uriPattern = "$BASE_URL_MYAPP/categories/{categoryName}/{itemName}" }
             ),
 
             ){entry->

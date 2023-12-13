@@ -20,8 +20,8 @@ sealed class Screen(val route: String) {
     data object Book: Screen(route = "books")
 
     //Used to display a details page for items like books and courses
-    data object ItemDetails: Screen(route = "categories/{categoryName}/details/{itemName}"){
-        fun createRoute(categoryName: String, itemName: String) = "categories/$categoryName/details/$itemName"
+    data object ItemDetails: Screen(route = "categories/{categoryName}/{itemName}"){
+        fun createRoute(categoryName: String, itemName: String) = "categories/$categoryName/$itemName"
     }
 
 
