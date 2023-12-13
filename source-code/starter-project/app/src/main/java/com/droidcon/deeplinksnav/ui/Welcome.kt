@@ -49,7 +49,7 @@ fun Welcome(modifier: Modifier = Modifier,
                 )
 
                 Text(
-                    text = stringResource(R.string.my_demo), modifier = Modifier
+                    text = stringResource(R.string.my_links), modifier = Modifier
                         .padding(8.dp)
                         .align(Alignment.CenterHorizontally),
 

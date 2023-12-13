@@ -16,9 +16,13 @@
 
 package com.droidcon.deeplinksnav.ui
 
+import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -38,6 +42,11 @@ import com.droidcon.deeplinksnav.ui.course.CourseDetails
 import com.droidcon.deeplinksnav.ui.course.CourseGrid
 import com.droidcon.deeplinksnav.ui.course.CourseUiState
 import com.droidcon.deeplinksnav.ui.course.CourseViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * UI that contains the app's navigation
@@ -159,6 +168,9 @@ fun MyLinksApp(
             backStackEntry.arguments?.getString("categoryName")?.let {
 //                categoryViewModel.updateSelectedCategory()
                 //We extract the category name from the back stack entry here,
+                //but for details screen of courses and books we don't need to extract,
+                //because we know from the view model which ones are selected
+
                 //We only update current selected category when it is coming from a deep link or when an item is selected from the category grid
                 val categoryName = backStackEntry.arguments?.getString("categoryName")
                 categoryName?.let{
@@ -190,6 +202,7 @@ fun MyLinksApp(
                                 (books as BookUiState.Success).data,
                                 onBookSelected = { book ->
                                     bookViewModel.updateSelectedBookByName(book.name)
+//                            appState.updateSelectedBook(book)
                                 },
                                 onNavigate = { bookName ->
                                     appState.navigateToBook(bookName)

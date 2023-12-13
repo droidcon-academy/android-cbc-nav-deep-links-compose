@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Links</title>
+    <style>
+        body {
+          font-family: sans-serif;
+        }
+
+        .container {
+          margin: 0 auto;
+          width: 80%;
+          text-align: center;
+        }
+
+        h1 {
+          font-size: 6rem;
+          margin-bottom: 20px;
+        }
+
+        .links {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+
+        .links a {
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          margin: 10px;
+          text-decoration: none;
+        }
+
+        .links a:hover {
+          background-color: darkblue;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Links</h1>
+    <h2>Deep Links</h2>
+    <div class="links">
+        <a href="pubs://linksapp">Home Page</a>
+        <a href="pubs://linksapp/categories">Categories</a>
+        <a href="pubs://linksapp/categories/courses">Courses</a>
+        <a href="pubs://linksapp/categories/books">Books</a>
+        <a href="pubs://linksapp/categories/courses/composeanimations">Course: Compose Animations</a>
+        <a href="pubs://linksapp/categories/books/thelittlebookofcontainers">Book: The Little Book of Containers</a>
+    </div>
+
+
+    <h2>App Links</h2>
+    <div class="links">
+        <a href="https://freecoder.eu.org">Home Page</a>
+        <a href="https://freecoder.eu.org/categories">Categories</a>
+        <a href="https://freecoder.eu.org/categories/courses">Courses</a>
+        <a href="https://freecoder.eu.org/categories/books">Books</a>
+        <a href="https://freecoder.eu.org/categories/courses/composeanimations">Course: Compose Animations</a>
+        <a href="https://freecoder.eu.org/categories/books/thelittlebookofcontainers">Book: The Little Book of Containers</a>
+    </div>
+
+
+</div>
+</body>
+</html>
