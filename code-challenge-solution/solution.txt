@@ -1,0 +1,13 @@
+Deep Links:
+
+List of categories: pubs://linksapp/categories
+List of books:      pubs://linksapp/categories/books
+The Little Book of Containers:    pubs://linksapp/categories/books/thelittlebookofcontainers
+The Complete Android Animations Course with Kotlin: pubs://linksapp/categories/courses/thecompleteandroidanimationscoursewithkotlin
+
+
+Web Links:
+List of categories: https://freecoder.eu.org/categories
+List of books:	    https://freecoder.eu.org/categories/books
+The Little Book of Containers:    https://freecoder.eu.org/categories/books/thelittlebookofcontainers
+The Complete Android Animations Course with Kotlin: https://freecoder.eu.org/categories/courses/thecompleteandroidanimationscoursewithkotlin
