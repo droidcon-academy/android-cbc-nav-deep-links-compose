@@ -1,9 +1,14 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.droidcon.deeplinksnav",
-    "sha256_cert_fingerprints":
-    ["C1:A8:E7:73:4D:BE:8B:71:90:B2:3B:B8:49:DE:7D:3B:6B:7F:9C:F8:98:0D:35:21:1A:A6:51:54:0D:B9:85:A5"]
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.droidcon.deeplinksnav",
+      "sha256_cert_fingerprints": [
+        "6F:52:BE:30:D9:94:1F:77:40:25:9A:FA:F3:EC:60:33:E4:01:AF:3B:F1:0F:10:7C:26:27:35:30:EF:08:9A:8B"
+      ]
+    }
   }
-}]
+]
