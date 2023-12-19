@@ -50,7 +50,7 @@ private class FakeCourseDao : CourseDao {
         emit(data)
     }
 
-    override suspend fun insertOrUpdateCourse(item: Course) {
+    override suspend fun insertCourse(item: Course) {
         data.add(0, item)
     }
 }

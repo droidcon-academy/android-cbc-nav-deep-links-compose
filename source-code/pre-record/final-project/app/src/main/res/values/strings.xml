@@ -1,0 +1,34 @@
+<!--
+  ~ Copyright (C) 2022 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">My Pubs</string>
+    <string name="main_screen">Main Screen</string>
+    <string name="courses">Courses</string>
+    <string name="course_details">Course Details</string>
+    <string name="categories">Categories</string>
+    <string name="category_details">Category Details</string>
+    <string name="arrow_back">Arrow Back</string>
+    <string name="books">Books</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="book_details">Book Details</string>
+    <string name="item_details">Item details</string>
+    <string name="start_here">Start Here</string>
+    <string name="my_links">My Links</string>
+    <string name="instructor">Instructor</string>
+    <string name="author">Author</string>
+    <string name="person">Person</string>
+</resources>
