@@ -31,8 +31,8 @@ android {
         applicationId = "com.droidcon.deeplinksnav"
         minSdk = 21
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.2"
 
         testInstrumentationRunner = "com.droidcon.deeplinksnav.HiltTestRunner"
         vectorDrawables {
