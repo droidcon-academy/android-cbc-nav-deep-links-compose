@@ -58,10 +58,8 @@ fun Welcome(modifier: Modifier = Modifier,
                 )
             }
 
-            val context = LocalContext.current
             TextButton(onClick = {
-                Toast.makeText(context,
-                    context.getString(R.string.please_check_out_the_final_version_for_full_functionality), Toast.LENGTH_SHORT).show()
+                onNavigate(Screen.Category.route)
 
             }, modifier = Modifier
                 .align(Alignment.Center)) {
