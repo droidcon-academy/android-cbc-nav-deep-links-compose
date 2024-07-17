@@ -5,10 +5,9 @@
     ],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.droidcon.deeplinksnav",
+      "package_name": "com.droidcon.deeplinkscompose",
       "sha256_cert_fingerprints": [
-        "C1:A8:E7:73:4D:BE:8B:71:90:B2:3B:B8:49:DE:7D:3B:6B:7F:9C:F8:98:0D:35:21:1A:A6:51:54:0D:B9:85:A5",
-        "62:45:08:E2:A2:69:9D:BF:FC:7B:8E:45:AE:71:6F:2A:BD:73:FF:90:8F:B7:90:A4:40:55:B3:63:25:7D:00:E3"
+        "0C:58:41:CA:B1:35:E2:F0:9B:1F:C3:C5:34:B0:F1:07:02:11:6C:98:7C:5F:1E:30:07:D1:7E:BE:13:65:D9:E0"
       ]
     }
   }

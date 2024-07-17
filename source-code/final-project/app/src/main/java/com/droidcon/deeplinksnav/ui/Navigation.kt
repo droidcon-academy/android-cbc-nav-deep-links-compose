@@ -16,10 +16,13 @@
 
 package com.droidcon.deeplinksnav.ui
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavType
@@ -58,13 +61,24 @@ fun MyLinksApp(
 
     val books by bookViewModel.uiState.collectAsStateWithLifecycle()
 
+    val context = LocalContext.current
 
     NavHost(navController = appState.navController, startDestination = Screen.Landing.route) {
+//        composable(route = Screen.Landing.route){
+//            Welcome(onNavigate = {
+//                appState.navigate(it)
+//            })
+//        }
+
         composable(route = Screen.Landing.route){
             Welcome(onNavigate = {
-                appState.navigate(it)
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    setData(Uri.parse("pubs://linksapp/categories/books"))
+                }
+                context.startActivity(intent)
             })
         }
+
 
         composable(route = Screen.ItemDetails.route,
             arguments = listOf(

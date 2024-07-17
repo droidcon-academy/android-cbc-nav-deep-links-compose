@@ -1,0 +1,17 @@
+
+// (1) Add the following imports to the top of Navigation.kt
+import android.content.Intent
+import android.net.Uri
+
+// (2) Add the following context definition before NavHost
+
+
+// (3) Copy the following code and paste it inside NavHost. Make sure you remove the existing code for the Screen.Landing.route node before adding this code.
+        composable(route = Screen.Landing.route){
+            Welcome(onNavigate = {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    setData(Uri.parse("pubs://linksapp/categories/books"))
+                }
+                context.startActivity(intent)
+            })
+        }
