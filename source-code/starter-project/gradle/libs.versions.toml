@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "8.4.0"
+androidGradlePlugin = "8.7.3"
 androidxCore = "1.13.1"
 androidxLifecycle = "2.7.0"
 androidxActivity = "1.9.0"
@@ -12,10 +12,10 @@ androidxTest = "1.5.0"
 androidxTestExt = "1.1.5"
 androidxTestRunner = "1.5.2"
 coroutines = "1.7.3"
-hilt = "2.49"
+hilt = "2.51.1"
 junit = "4.13.2"
-kotlin = "1.9.23"
-ksp = "1.9.23-1.0.20"
+kotlin = "2.0.0"
+ksp = "2.0.0-1.0.21"
 coil = "2.5.0"
 
 [libraries]
@@ -56,3 +56,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 hilt-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

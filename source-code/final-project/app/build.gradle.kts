@@ -20,17 +20,18 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt.gradle)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "com.droidcon.deeplinksnav"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.droidcon.deeplinkscompose"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 4
         versionName = "1.3"
 
